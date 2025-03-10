@@ -1,0 +1,79 @@
+.dropdown-menu {
+  --bs-dropdown-min-width: 5.5rem;
+}
+
+.row-padding {
+  padding-right: 3rem;
+}
+
+.list-group-item + .list-group-item {
+  border-top-width: thin;
+}
+/* .list-group-item:first-child,
+.list-group-item:last-child {
+  border-radius: 0px;
+} */
+
+/* .list-group- */
+.list-group-item {
+  border-radius: inherit;
+  margin: 0.5rem 0;
+}
+
+.list-group {
+  max-height: 590px;
+  /* max-height: 47rem; */
+  margin-bottom: 10px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.input-group {
+  width: 70%;
+}
+
+.favorite-color {
+  color: gold;
+}
+
+.favorite-btn {
+  --bs-btn-border-width: 0;
+  outline: none !important;
+}
+
+.h4-header {
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.keyword > button {
+  padding: 0.5rem 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.keyword {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+ul {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.list-group-item-action {
+  cursor: pointer;
+}
+
+.long-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 1.5rem;
+}
+
+.big-small {
+  font-size: 0.7em;
+}

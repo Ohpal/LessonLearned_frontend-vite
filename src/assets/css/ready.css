@@ -1,0 +1,12 @@
+.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.load_middle {
+  height: 100%;
+  align-items: center;
+  margin-top: 6rem;
+}

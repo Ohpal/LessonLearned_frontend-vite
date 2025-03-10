@@ -1,0 +1,9 @@
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.load_middle {
+  height: 100%;
+  align-items: center;
+}

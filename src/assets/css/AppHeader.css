@@ -1,0 +1,27 @@
+.header {
+  --bs-navbar-padding-x: 1.5rem;
+  --bs-navbar-padding-y: 0.8rem;
+}
+
+.sb-topnav.navbar-dark #sidebarToggle {
+  color: rgba(255, 255, 255, 0.5);
+}
+.sb-topnav .navbar-brand {
+  width: 225px;
+  margin: 0;
+}
+.navbar-brand {
+  --bs-navbar-brand-font-size: 1.1rem;
+  padding-top: var(--bs-navbar-brand-padding-y);
+  padding-bottom: var(--bs-navbar-brand-padding-y);
+  margin-right: var(--bs-navbar-brand-margin-end);
+  font-size: var(--bs-navbar-brand-font-size);
+  color: var(--bs-navbar-brand-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

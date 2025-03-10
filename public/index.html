@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <title>시운전 통합 관제 플랫폼</title>
+    <style>
+      #app,
+      html {
+        background-color: #ebf1f1;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body class="sb-nav-fixed sb-sidenav-toggled">
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      // Toggle the side navigation
+      const sidebarToggle = document.body.querySelector('#sidebarToggle')
+      if (sidebarToggle) {
+        // Uncomment Below to persist sidebar toggle between refreshes
+        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+        //     document.body.classList.toggle('sb-sidenav-toggled');
+        // }
+        sidebarToggle.addEventListener('click', (event) => {
+          event.preventDefault()
+          document.body.classList.toggle('sb-sidenav-toggled')
+          localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'))
+        })
+      }
+    })
+  </script>
+</html>
