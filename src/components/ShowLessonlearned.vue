@@ -204,16 +204,16 @@ export default {
       switch (type) {
         case 'jpg':
         case 'png':
-          return require('../assets/image/image_icon.png')
+          return '../assets/image/image_icon.png'
         case 'pdf':
-          return require('../assets/image/pdf_icon.png')
+          return '../assets/image/pdf_icon.png'
         case 'hwp':
         case 'hwpx':
-          return require('../assets/image/hwp_icon.png')
+          return '../assets/image/hwp_icon.png'
         case 'zip':
-          return require('../assets/image/zip_icon.png')
+          return '../assets/image/zip_icon.png'
         default:
-          return require('../assets/image/other_icon.png')
+          return '../assets/image/other_icon.png'
       }
     },
 
@@ -240,7 +240,6 @@ export default {
       }
     },
 
-    
     // 토스트 메세지 표시
     showToast() {
       this.show = true
