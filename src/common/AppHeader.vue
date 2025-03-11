@@ -1,5 +1,5 @@
 <template>
-  <nav class="sb-topnav navbar navbar-expand navbar-light bg-light shadow-sm p-3 mb-5 bg-white rounded">
+  <nav class="sb-topnav navbar navbar-expand navbar-light bg-light shadow-sm p-3 bg-white rounded">
     <router-link class="navbar-brand ps-3" to="/lessonlearned">
       <!-- <img src="../assets/image/ship_icon.png" /> -->
       시운전 통합 관제 서비스&nbsp;</router-link

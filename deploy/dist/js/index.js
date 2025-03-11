@@ -1,6 +1,6 @@
 import { importShared } from "./__federation_fn_import-Dc6jQS63.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-1tPrXgE0.js";
-import lesson from "./__federation_expose_LessonRouter-A4SkguZg.js";
+import lesson from "./__federation_expose_LessonRouter-CM7vPmpi.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -40,7 +40,7 @@ import lesson from "./__federation_expose_LessonRouter-A4SkguZg.js";
 })();
 const _sfc_main$3 = {};
 const { createTextVNode: _createTextVNode$1, resolveComponent: _resolveComponent$2, withCtx: _withCtx$1, createVNode: _createVNode$2, createElementVNode: _createElementVNode$3, openBlock: _openBlock$3, createElementBlock: _createElementBlock$3 } = await importShared("vue");
-const _hoisted_1$3 = { class: "sb-topnav navbar navbar-expand navbar-light bg-light shadow-sm p-3 mb-5 bg-white rounded" };
+const _hoisted_1$3 = { class: "sb-topnav navbar navbar-expand navbar-light bg-light shadow-sm p-3 bg-white rounded" };
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_router_link = _resolveComponent$2("router-link");
   return _openBlock$3(), _createElementBlock$3("nav", _hoisted_1$3, [
@@ -98,7 +98,7 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     ], -1))
   ]);
 }
-const AppHeader = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3], ["__scopeId", "data-v-ebd652f1"]]);
+const AppHeader = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3], ["__scopeId", "data-v-ee9833e9"]]);
 const _sfc_main$2 = {};
 const { createElementVNode: _createElementVNode$2, createTextVNode: _createTextVNode, resolveComponent: _resolveComponent$1, withCtx: _withCtx, createVNode: _createVNode$1, openBlock: _openBlock$2, createElementBlock: _createElementBlock$2 } = await importShared("vue");
 const _hoisted_1$2 = { id: "layoutSidenav_nav" };
@@ -362,7 +362,7 @@ function _sfc_render$2(_ctx, _cache) {
     ])
   ]);
 }
-const AppSider = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-5ff44e7d"]]);
+const AppSider = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-f7d464c9"]]);
 const _sfc_main$1 = {};
 const { createElementVNode: _createElementVNode$1, openBlock: _openBlock$1, createElementBlock: _createElementBlock$1 } = await importShared("vue");
 const _hoisted_1$1 = { class: "py-1 bg-dark fixed-bottom" };

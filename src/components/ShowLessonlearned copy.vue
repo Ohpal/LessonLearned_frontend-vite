@@ -1,5 +1,6 @@
 <template>
-  <div class="modal fade" id="list_modal" tabindex="-1" aria-labelledby="list_modal_Label" aria-hidden="true">
+  <!-- <div class="modal fade" id="list_modal" tabindex="-1" aria-labelledby="list_modal_Label" aria-hidden="true"> -->
+  <div class="modal fade" id="list_modal" tabindex="-1" aria-labelledby="list_modal_Label" inert="true"></div>
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">

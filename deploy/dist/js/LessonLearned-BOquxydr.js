@@ -260,21 +260,6 @@ const noop = () => {
 const toFiniteNumber = (value, defaultValue) => {
   return value != null && Number.isFinite(value = +value) ? value : defaultValue;
 };
-const ALPHA = "abcdefghijklmnopqrstuvwxyz";
-const DIGIT = "0123456789";
-const ALPHABET = {
-  DIGIT,
-  ALPHA,
-  ALPHA_DIGIT: ALPHA + ALPHA.toUpperCase() + DIGIT
-};
-const generateString = (size = 16, alphabet = ALPHABET.ALPHA_DIGIT) => {
-  let str = "";
-  const { length } = alphabet;
-  while (size--) {
-    str += alphabet[Math.random() * length | 0];
-  }
-  return str;
-};
 function isSpecCompliantForm(thing) {
   return !!(thing && isFunction(thing.append) && thing[Symbol.toStringTag] === "FormData" && thing[Symbol.iterator]);
 }
@@ -373,8 +358,6 @@ const utils$1 = {
   findKey,
   global: _global,
   isContextDefined,
-  ALPHABET,
-  generateString,
   isSpecCompliantForm,
   toJSONObject,
   isAsyncFn,
@@ -1330,8 +1313,9 @@ function isAbsoluteURL(url) {
 function combineURLs(baseURL, relativeURL) {
   return relativeURL ? baseURL.replace(/\/?\/$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
 }
-function buildFullPath(baseURL, requestedURL) {
-  if (baseURL && !isAbsoluteURL(requestedURL)) {
+function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
+  let isRelativeUrl = !isAbsoluteURL(requestedURL);
+  if (baseURL && isRelativeUrl || allowAbsoluteUrls == false) {
     return combineURLs(baseURL, requestedURL);
   }
   return requestedURL;
@@ -1935,7 +1919,7 @@ function dispatchRequest(config) {
     return Promise.reject(reason);
   });
 }
-const VERSION$1 = "1.7.9";
+const VERSION$1 = "1.8.2";
 const validators$1 = {};
 ["object", "boolean", "number", "function", "string", "symbol"].forEach((type, i) => {
   validators$1[type] = function validator2(thing) {
@@ -2063,6 +2047,12 @@ let Axios$1 = class Axios {
         }, true);
       }
     }
+    if (config.allowAbsoluteUrls !== void 0) ;
+    else if (this.defaults.allowAbsoluteUrls !== void 0) {
+      config.allowAbsoluteUrls = this.defaults.allowAbsoluteUrls;
+    } else {
+      config.allowAbsoluteUrls = true;
+    }
     validator.assertOptions(config, {
       baseUrl: validators.spelling("baseURL"),
       withXsrfToken: validators.spelling("withXSRFToken")
@@ -2133,7 +2123,7 @@ let Axios$1 = class Axios {
   }
   getUri(config) {
     config = mergeConfig$1(this.defaults, config);
-    const fullPath = buildFullPath(config.baseURL, config.url);
+    const fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
     return buildURL(fullPath, config.params, config.paramsSerializer);
   }
 };
@@ -9097,7 +9087,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
                     "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => $data.lessonlearned.project_part = $event),
                     required: ""
                   }, _cache[17] || (_cache[17] = [
-                    _createStaticVNode$1('<option value="" disabled selected data-v-8b032646>관련 시운전파트</option><option value="general" data-v-8b032646>General Part</option><option value="hull" data-v-8b032646>HULL Part</option><option value="machinery" data-v-8b032646>Machinery Part</option><option value="electric" data-v-8b032646>Electric Part</option><option value="accommodation" data-v-8b032646>Accomodation Part</option><option value="outfitting" data-v-8b032646>Outfitting Part</option>', 7)
+                    _createStaticVNode$1('<option value="" disabled selected data-v-b70bc48a>관련 시운전파트</option><option value="general" data-v-b70bc48a>General Part</option><option value="hull" data-v-b70bc48a>HULL Part</option><option value="machinery" data-v-b70bc48a>Machinery Part</option><option value="electric" data-v-b70bc48a>Electric Part</option><option value="accommodation" data-v-b70bc48a>Accomodation Part</option><option value="outfitting" data-v-b70bc48a>Outfitting Part</option>', 7)
                   ]), 2), [
                     [_vModelSelect$1, $data.lessonlearned.project_part]
                   ])
@@ -9200,7 +9190,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 64);
 }
-const WriteLessonlearned = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-8b032646"]]);
+const WriteLessonlearned = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-b70bc48a"]]);
 const _sfc_main$1 = {
   name: "ShowLessonlearned",
   props: {
@@ -9287,16 +9277,16 @@ const _sfc_main$1 = {
       switch (type) {
         case "jpg":
         case "png":
-          return require("../assets/image/image_icon.png");
+          return "../assets/image/image_icon.png";
         case "pdf":
-          return require("../assets/image/pdf_icon.png");
+          return "../assets/image/pdf_icon.png";
         case "hwp":
         case "hwpx":
-          return require("../assets/image/hwp_icon.png");
+          return "../assets/image/hwp_icon.png";
         case "zip":
-          return require("../assets/image/zip_icon.png");
+          return "../assets/image/zip_icon.png";
         default:
-          return require("../assets/image/other_icon.png");
+          return "../assets/image/other_icon.png";
       }
     },
     //====================수정하기 버튼 작업===============
@@ -9461,7 +9451,7 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
                     "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => $data.formData.project_part = $event),
                     disabled: !$data.editMode
                   }, _cache[17] || (_cache[17] = [
-                    _createStaticVNode('<option selected data-v-e93c04cc>Select Part</option><option value="general" data-v-e93c04cc>General Part</option><option value="hull" data-v-e93c04cc>HULL Part</option><option value="machinery" data-v-e93c04cc>Machinery Part</option><option value="electric" data-v-e93c04cc>Electric Part</option><option value="accommodation" data-v-e93c04cc>Accommodation Part</option><option value="outfitting" data-v-e93c04cc>Outfitting Part</option>', 7)
+                    _createStaticVNode('<option selected data-v-136c7987>Select Part</option><option value="general" data-v-136c7987>General Part</option><option value="hull" data-v-136c7987>HULL Part</option><option value="machinery" data-v-136c7987>Machinery Part</option><option value="electric" data-v-136c7987>Electric Part</option><option value="accommodation" data-v-136c7987>Accommodation Part</option><option value="outfitting" data-v-136c7987>Outfitting Part</option>', 7)
                   ]), 8, _hoisted_20$1), [
                     [_vModelSelect, $data.formData.project_part]
                   ])
@@ -9586,7 +9576,7 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 64);
 }
-const ShowLessonlearned = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1], ["__scopeId", "data-v-e93c04cc"]]);
+const ShowLessonlearned = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1], ["__scopeId", "data-v-136c7987"]]);
 const _imports_0 = "./../media/notfound-Bt9uQNvd.notfound.png";
 const _sfc_main = {
   components: { WriteLessonlearned, ShowLessonlearned },
@@ -9955,7 +9945,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-const LessonLearned = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-6d760d03"]]);
+const LessonLearned = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-ee452020"]]);
 export {
   LessonLearned as default
 };
