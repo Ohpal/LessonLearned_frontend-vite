@@ -73,7 +73,8 @@
                 <div class="mb-1 text-primary fw-bold h5 long-text">{{ item.project_title }}</div>
                 <div class="mb-1 long-text">{{ item.project_issue }}</div>
               </div>
-              <small class="col-md-2 align-self-center text-left long-text">{{ item.project_commander }} | {{ item.project_part.toUpperCase() }}</small>
+              <small class="col-md-2 align-self-center text-left long-text">{{ item.project_commander }} | {{ item.project_part }}</small>
+              <!-- <small class="col-md-2 align-self-center text-left long-text">{{ item.project_commander }} | {{ item.project_part.toUpperCase() }}</small> -->
 
               <div class="col-md-2 align-self-center text-left">
                 <small class="col-md-2">작성일 {{ item.project_date.split('T')[0] }}</small>

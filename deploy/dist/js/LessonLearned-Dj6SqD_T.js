@@ -9927,7 +9927,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                   _createElementVNode("div", _hoisted_20, _toDisplayString(item.project_title), 1),
                   _createElementVNode("div", _hoisted_21, _toDisplayString(item.project_issue), 1)
                 ], 8, _hoisted_19),
-                _createElementVNode("small", _hoisted_22, _toDisplayString(item.project_commander) + " | " + _toDisplayString(item.project_part.toUpperCase()), 1),
+                _createElementVNode("small", _hoisted_22, _toDisplayString(item.project_commander) + " | " + _toDisplayString(item.project_part), 1),
                 _createElementVNode("div", _hoisted_23, [
                   _createElementVNode("small", _hoisted_24, "작성일 " + _toDisplayString(item.project_date.split("T")[0]), 1),
                   _cache[18] || (_cache[18] = _createElementVNode("br", null, null, -1)),
@@ -9945,7 +9945,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-const LessonLearned = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-ee452020"]]);
+const LessonLearned = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-5e998586"]]);
 export {
   LessonLearned as default
 };

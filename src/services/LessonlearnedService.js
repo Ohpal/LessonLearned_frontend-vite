@@ -13,22 +13,6 @@ class LessonLearnedService {
     return http.put(`/api/lessonlearned/update`, data)
   }
 
-  //   delete(id) {
-  //     return http.delete(`/tutorials/${id}`)
-  //   }
-
-  //   deleteAll() {
-  //     return http.delete(`/tutorials`)
-  //   }
-
-  // selectIssue(issue) {
-  //   return http.get(`/api/lessonlearned?issue=${issue}`)
-  // }
-
-  // selectIssue(issue) {
-  //   return http.get(`/api/lessonlearned/search`, { params: { query: issue } })
-  // }
-
   selectELK(issue) {
     return http.get(`/api/lessonlearned/search`, { params: { query: issue } })
   }

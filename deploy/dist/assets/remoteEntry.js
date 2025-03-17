@@ -1,8 +1,8 @@
 const exportSet = /* @__PURE__ */ new Set(["Module", "__esModule", "default", "_export_sfc"]);
 let moduleMap = {
   "./lessonRouter": () => {
-    dynamicLoadingCss(["style-D4-sYk7I.style.css"], false, "./lessonRouter");
-    return __federation_import("./../js/__federation_expose_LessonRouter-CM7vPmpi.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
+    dynamicLoadingCss(["style-CI0sKmIT.style.css"], false, "./lessonRouter");
+    return __federation_import("./../js/__federation_expose_LessonRouter-Bh_ot8UC.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
   }
 };
 const seen = {};

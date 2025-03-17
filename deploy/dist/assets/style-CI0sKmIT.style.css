@@ -11742,13 +11742,13 @@ option[data-v-136c7987] {
   overflow-y: auto;
   max-height: 7rem;
 }
-.dropdown-menu[data-v-ee452020] {
+.dropdown-menu[data-v-5e998586] {
   --bs-dropdown-min-width: 5.5rem;
 }
-.row-padding[data-v-ee452020] {
+.row-padding[data-v-5e998586] {
   padding-right: 3rem;
 }
-.list-group-item + .list-group-item[data-v-ee452020] {
+.list-group-item + .list-group-item[data-v-5e998586] {
   border-top-width: thin;
 }
 /* .list-group-item:first-child,
@@ -11757,62 +11757,62 @@ option[data-v-136c7987] {
 } */
 
 /* .list-group- */
-.list-group-item[data-v-ee452020] {
+.list-group-item[data-v-5e998586] {
   border-radius: inherit;
   margin: 0.5rem 0;
 }
-.list-group[data-v-ee452020] {
+.list-group[data-v-5e998586] {
   max-height: 590px;
   /* max-height: 47rem; */
   margin-bottom: 10px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-.input-group[data-v-ee452020] {
+.input-group[data-v-5e998586] {
   width: 70%;
 }
-.favorite-color[data-v-ee452020] {
+.favorite-color[data-v-5e998586] {
   color: gold;
 }
-.favorite-btn[data-v-ee452020] {
+.favorite-btn[data-v-5e998586] {
   --bs-btn-border-width: 0;
   outline: none !important;
 }
-.h4-header[data-v-ee452020] {
+.h4-header[data-v-5e998586] {
   align-items: center;
   margin-right: 1rem;
 }
-.keyword > button[data-v-ee452020] {
+.keyword > button[data-v-5e998586] {
   padding: 0.5rem 0.7rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.keyword[data-v-ee452020] {
+.keyword[data-v-5e998586] {
   width: 100%;
   margin-top: 1rem;
 }
-ul[data-v-ee452020] {
+ul[data-v-5e998586] {
   margin-top: 1rem;
   margin-bottom: 0;
 }
-.list-group-item-action[data-v-ee452020] {
+.list-group-item-action[data-v-5e998586] {
   cursor: pointer;
 }
-.long-text[data-v-ee452020] {
+.long-text[data-v-5e998586] {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 1.5rem;
 }
-.big-small[data-v-ee452020] {
+.big-small[data-v-5e998586] {
   font-size: 0.7em;
 }
-.spinner-border[data-v-ee452020] {
+.spinner-border[data-v-5e998586] {
   width: 3rem;
   height: 3rem;
 }
-.load_middle[data-v-ee452020] {
+.load_middle[data-v-5e998586] {
   height: 100%;
   align-items: center;
 }

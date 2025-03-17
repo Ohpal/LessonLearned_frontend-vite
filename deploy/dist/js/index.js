@@ -1,6 +1,6 @@
 import { importShared } from "./__federation_fn_import-Dc6jQS63.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-1tPrXgE0.js";
-import lesson from "./__federation_expose_LessonRouter-CM7vPmpi.js";
+import lesson from "./__federation_expose_LessonRouter-Bh_ot8UC.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
