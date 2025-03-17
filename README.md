@@ -42,7 +42,11 @@ cd deploy
 node server.js
 ```
 
+```
 에러 발생 시 Delete package-lock.json or node_modules
+npm install
+node server.js
+```
 
 ## Server.js Port Change
 
