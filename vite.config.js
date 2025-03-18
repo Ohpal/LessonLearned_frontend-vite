@@ -14,7 +14,7 @@ export default defineConfig({
     port: 4000,
     proxy: {
       '/api': {
-        target: 'http://rims.iptime.org:4600',
+        target: 'http://192.168.90.100:4600',
         changeOrigin: true,
       },
     },

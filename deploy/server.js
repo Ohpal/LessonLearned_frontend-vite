@@ -57,19 +57,19 @@ const logger = winston.createLogger({
       dirname: process.env.VUE_APP_LOG_PATH,
       filename: 'svc-starter-ui-%DATE%.log',
       zippedArchive: true,
-      handleExceptions: true
+      handleExceptions: true,
     }),
     new winston.transports.DailyRotateFile({
       level: 'error',
       datePattern: 'YYYY-MM-DD',
       dirname: process.env.VUE_APP_LOG_PATH,
       filename: 'svc-starter-ui-%DATE%.error.log',
-      zippedArchive: true
+      zippedArchive: true,
     }),
     new winston.transports.Console({
-      handleExceptions: true
-    })
-  ]
+      handleExceptions: true,
+    }),
+  ],
 })
 /* winston logger */
 
@@ -85,7 +85,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
   const options = {
     key: fs.readFileSync(`${process.env.VITE_CONFIG_PATH}/ssl/server.key`).toString(),
     cert: fs.readFileSync(`${process.env.VITE_CONFIG_PATH}/ssl/server.crt`).toString(),
-    passphrase: 'blueone'
+    passphrase: 'blueone',
   }
 
   const httpsServer = https.createServer(options, app)
@@ -118,7 +118,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
             logger.info(logString)
           } else logger.info(logString)
         })
-      }
+      },
     })
   )
   app.use(
@@ -144,7 +144,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
             logger.info(logString)
           } else logger.info(logString)
         })
-      }
+      },
     })
   )
   // app.get(process.env.VITE_CLIENT_PATH + '/actuator/prometheus', (req, res) => {
@@ -154,11 +154,9 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
   // app.use(process.env.VITE_CLIENT_PATH, express.static(distDir))
 }
 
-
-
 app.use(
   createProxyMiddleware('/api', {
-    target: `http://rims.iptime.org:4600/api`,
+    target: `http://192.168.90.100:4600/api`,
     pathRewrite: { '^/api': '' },
     changeOrigin: true,
     logLevel: 'debug',
@@ -180,7 +178,7 @@ app.use(
           logger.info(logString)
         } else logger.info(logString)
       })
-    }
+    },
   })
 )
 /** proxy 설정 **/
@@ -208,7 +206,7 @@ app.use(
           logger.info(logString)
         } else logger.info(logString)
       })
-    }
+    },
   })
 )
 app.use(
@@ -235,13 +233,13 @@ app.use(
           logger.info(logString)
         } else logger.info(logString)
       })
-    }
+    },
   })
 )
 
 app.use(express.static(distDir))
-app.get("*", (req, res) => {
-  res.sendFile(distDir + '/index.html', function(err) {
+app.get('*', (req, res) => {
+  res.sendFile(distDir + '/index.html', function (err) {
     if (err) {
       res.status(500).send(err)
     }
@@ -253,7 +251,6 @@ const port = process.env.VITE_PORT_HTTP
 app.listen(4500, () => {
   console.log(`${date.toLocaleString()} app listening at ${port}`)
 })
-
 
 // app.get(process.env.VITE_CLIENT_PATH + '/actuator/prometheus', async (req, res) => {
 //   try {
