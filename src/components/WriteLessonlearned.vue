@@ -1,6 +1,5 @@
 <template>
   <!-- 지식공유 Modal -->
-  <button type="button" class="btn btn-primary d-flex gap-2 mb-3" data-bs-toggle="modal" data-bs-target="#lesson-write">지식공유+</button>
   <div class="modal fade" id="lesson-write" ref="staticModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">

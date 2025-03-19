@@ -2,35 +2,35 @@ import http from '../http-common'
 
 class LessonLearnedService {
   selectAll() {
-    return http.get('/api/lessonlearned')
+    return http.get('/rims-api/lessonlearned')
   }
 
   create(data) {
-    return http.post('/api/lessonlearned', data)
+    return http.post('/rims-api/lessonlearned', data)
   }
 
   update(data) {
-    return http.put(`/api/lessonlearned/update`, data)
+    return http.put(`/rims-api/lessonlearned/update`, data)
   }
 
   selectELK(issue) {
-    return http.get(`/api/lessonlearned/search`, { params: { query: issue } })
+    return http.get(`/rims-api/lessonlearned/search`, { params: { query: issue } })
   }
 
   selectFile() {
-    return http.get('/api/lessonlearned/file')
+    return http.get('/rims-api/lessonlearned/file')
   }
 
   updateFavorite(id, check) {
-    return http.post(`/api/lessonlearned/${id}`, check)
+    return http.post(`/rims-api/lessonlearned/${id}`, check)
   }
 
   incrementViews(id) {
-    return http.post(`/api/lessonlearned/${id}/views`)
+    return http.post(`/rims-api/lessonlearned/${id}/views`)
   }
 
   uploadFile(formdata, id) {
-    return http.post(`/api/lessonlearned/upload`, formdata, {
+    return http.post(`/rims-api/lessonlearned/upload`, formdata, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -39,7 +39,7 @@ class LessonLearnedService {
   }
 
   downloadFile(id, file) {
-    return http.get(`/api/lessonlearned/download?file=${encodeURIComponent(file)}&id=${id}`, {
+    return http.get(`/rims-api/lessonlearned/download?file=${encodeURIComponent(file)}&id=${id}`, {
       responseType: 'blob', // 바이너리 데이터는 Blob 형식으로 받아야함.
     })
   }

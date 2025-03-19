@@ -2,89 +2,100 @@
 <template>
   <div class="container-fluid px-5">
     <div class="mt-4 d-flex">
-      <h4 class="d-flex gap-2 mb-3 h4-header">Lesson Learned UAngel Test</h4>
+      <h4 class="d-flex gap-2 mb-3 h4-header title-wrapper">Lesson Learend > Search</h4>
 
       <!-- 지식공유 Modal -->
       <WriteLessonlearned />
     </div>
 
     <!--Lesson Learned 검색-->
-    <div class="container-fluid px-4">
-      <div class="row gx-5">
-        <div class="col-md-4 p-3 border bg-light">
-          <div class="bd-subnavbar" style="height: 230px">
-            <div class="fs-5 fw-bold text-primary">시운전 Lesson Learend 검색</div>
-            <form class="bd-search position-relative me-auto mt-3" @submit.prevent="handleSubmit">
-              <div class="input-group shadow-sm">
-                <input class="form-control" type="text" placeholder="시운전 검색어를 입력하세요." aria-label="시운전 검색어를 입력하세요." aria-describedby="btnNavbarSearch" spellcheck="false" aria-expanded="false" aria-autocomplete="list" v-model="search_issue" aria />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button" @click="searchLessonlearned">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                  </svg>
-                </button>
-              </div>
-            </form>
-          </div>
-          <div class="bd-subnavbar">
-            <div class="fs-5 fw-bold text-primary">시운전 Lesson Learend 키워드</div>
-            <div class="row gap-3 mb-3 p-3 bg-white border rounded keyword mx-auto shadow-sm">
-              <button type="button" class="btn btn-primary col-md-auto" v-for="keyword in keywords" v-bind:key="keyword" @click="keyword_select" data-value="{{ keyword }}">{{ keyword }}</button>
-            </div>
-          </div>
+    <div class="container-fluid content-box-rims">
+      <div class="d-flex align-items-center mb-3">
+        <div class="d-flex fs-5">시운전 지식 공유</div>
+        <div class="d-flex ms-3">
+          <button type="button" class="btn btn-primary gap-2 justify-content-end" data-bs-toggle="modal" data-bs-target="#lesson-write">지식공유+</button>
         </div>
-        <!--Lesson Learned 리스트-->
-        <div class="col-md-8 p-3 border bg-light">
-          <div class="row row-padding">
-            <div class="col-11 fs-5 fw-bold text-primary">Lessson Learned 리스트</div>
-            <div class="col-1 dropdown">
-              <button class="btn dropdown-toggle fs-6" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ sortOption }}</button>
-              <ul class="dropdown-menu fs-6">
-                <li><a class="dropdown-item" @click="updateSortOption('최신순')">최신순</a></li>
-                <li><a class="dropdown-item" @click="updateSortOption('등록순')">등록순</a></li>
-                <li><a class="dropdown-item" @click="updateSortOption('조회순')">조회순</a></li>
-              </ul>
+      </div>
+      <div class="container-fluid">
+        <div class="row gx-5">
+          <div class="col-md-4 p-3 border bg-light rounded-left-10">
+            <div class="bd-subnavbar" style="height: 230px">
+              <div class="fs-6 fw-bold text-primary d-flex">
+                <div class="d-flex">시운전 Lesson Learned</div>
+              </div>
+              <form class="bd-search position-relative me-auto mt-3" @submit.prevent="handleSubmit">
+                <div class="input-group shadow-sm">
+                  <input class="form-control" type="text" placeholder="시운전 검색어를 입력하세요." aria-label="시운전 검색어를 입력하세요." aria-describedby="btnNavbarSearch" spellcheck="false" aria-expanded="false" aria-autocomplete="list" v-model="search_issue" aria />
+                  <button class="btn btn-primary" id="btnNavbarSearch" type="button" @click="searchLessonlearned">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="bd-subnavbar">
+              <div class="fs-6 fw-bold text-primary">시운전 Lesson Learend 키워드</div>
+              <div class="row gap-3 mb-3 p-3 bg-white border rounded keyword mx-auto shadow-sm">
+                <button type="button" class="btn btn-primary col-md-auto" v-for="keyword in keywords" v-bind:key="keyword" @click="keyword_select" data-value="{{ keyword }}">{{ keyword }}</button>
+              </div>
             </div>
           </div>
-          <div class="d-flex justify-content-center load_middle" v-if="loading">
-            <div class="spinner-border text-primary m-5" role="status">
-              <span class="sr-only"></span>
+          <!--Lesson Learned 리스트-->
+          <div class="col-md-8 p-3 border bg-light">
+            <div class="row row-padding">
+              <div class="col-11 fs-6 fw-bold text-primary">Lessson Learned 리스트</div>
+              <div class="col-1 dropdown">
+                <button class="btn dropdown-toggle fs-6" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ sortOption }}</button>
+                <ul class="dropdown-menu fs-6">
+                  <li><a class="dropdown-item" @click="updateSortOption('최신순')">최신순</a></li>
+                  <li><a class="dropdown-item" @click="updateSortOption('등록순')">등록순</a></li>
+                  <li><a class="dropdown-item" @click="updateSortOption('조회순')">조회순</a></li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <!-- 데이터 없음 이미지 -->
-          <div class="d-flex justify-content-center load_middle" v-else-if="select_empty">
-            <img src="../assets/image/notfound.png" alt="No data found" />
-          </div>
-          <div class="list-group" v-else>
-            <div class="list-group-item list-group-item-action d-flex flex-row shadow-sm" v-for="(item, index) in sortedLessonlearnedList" :key="index">
-              <div class="col-md align-self-center text-center">
-                <button class="btn favorite-btn" v-if="item.show_bool === false" @click="favorite_check(true)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
-                  </svg>
-                </button>
-                <button v-else class="btn favorite-btn favorite-color" @click="favorite_check(false)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                  </svg>
-                </button>
+            <div class="d-flex justify-content-center load_middle" v-if="loading">
+              <div class="spinner-border text-primary m-5" role="status">
+                <span class="sr-only"></span>
               </div>
-              <!-- <div class="col-md-7 align-self-center" data-bs-toggle="modal" data-bs-target="#list_modal" @click="sendData(index)"> -->
-              <div class="col-md-7 align-self-center" data-bs-toggle="modal" data-bs-target="#list_modal" @click="increaseProjectViews(index)">
-                <div class="mb-1 text-primary fw-bold h5 long-text">{{ item.project_title }}</div>
-                <div class="mb-1 long-text">{{ item.project_issue }}</div>
-              </div>
-              <small class="col-md-2 align-self-center text-left long-text">{{ item.project_commander }} | {{ item.project_part }}</small>
-              <!-- <small class="col-md-2 align-self-center text-left long-text">{{ item.project_commander }} | {{ item.project_part.toUpperCase() }}</small> -->
+            </div>
+            <!-- 데이터 없음 이미지 -->
+            <div class="d-flex justify-content-center load_middle" v-else-if="select_empty">
+              <img src="../assets/image/notfound.png" alt="No data found" />
+            </div>
+            <div class="list-group" v-else>
+              <div class="list-group-item list-group-item-action d-flex flex-row shadow-sm" v-for="(item, index) in sortedLessonlearnedList" :key="index">
+                <div class="col-md align-self-center text-center">
+                  <button class="btn favorite-btn" v-if="item.show_bool === false" @click="favorite_check(true)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg>
+                  </button>
+                  <button v-else class="btn favorite-btn favorite-color" @click="favorite_check(false)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
+                  </button>
+                </div>
+                <!-- <div class="col-md-7 align-self-center" data-bs-toggle="modal" data-bs-target="#list_modal" @click="sendData(index)"> -->
+                <div class="col-md-7 align-self-center" data-bs-toggle="modal" data-bs-target="#list_modal" @click="increaseProjectViews(index)">
+                  <div class="mb-1 text-primary fw-bold h5 long-text">{{ item.project_title }}</div>
+                  <div class="mb-1 long-text">{{ item.project_issue }}</div>
+                </div>
+                <small class="col-md-2 align-self-center text-left long-text">{{ item.project_commander }} | {{ item.project_part }}</small>
+                <!-- <small class="col-md-2 align-self-center text-left long-text">{{ item.project_commander }} | {{ item.project_part.toUpperCase() }}</small> -->
 
-              <div class="col-md-2 align-self-center text-left">
-                <small class="col-md-2">작성일 {{ item.project_date.split('T')[0] }}</small>
-                <br />
-                <small class="col-md-2 big-small">조회수&nbsp;{{ item.project_views }}</small>
+                <div class="col-md-2 align-self-center text-left">
+                  <!-- <small class="col-md-2">작성일 {{ item.project_date.split('T')[0] }}</small> -->
+                  <small class="col-md-2">작성일 {{ item.project_date }}</small>
+                  <br />
+                  <small class="col-md-2 big-small">조회수&nbsp;{{ item.project_views }}</small>
+                </div>
               </div>
             </div>
+            <!-- Lessonlearned 상세보기 Modal -->
+            <ShowLessonlearned :setData="setDatas" :setFile="setFiles" />
           </div>
-          <!-- Lessonlearned 상세보기 Modal -->
-          <ShowLessonlearned :setData="setDatas" :setFile="setFiles" />
         </div>
       </div>
     </div>
@@ -108,7 +119,7 @@ export default {
       currentIndex: -1,
       setDatas: [],
       setFiles: [],
-      keywords: ['#안 벽', '#기 관', '#선 장', '#전 장', '#해 상', '#GENERAL', '#HULL', '#MACHINERY', '#ELECTRIC', '#ACCOMMODATION', '#OUTFITTING', 'ETC..'],
+      keywords: ['#전 체', '#안 벽', '#기 관', '#선 장', '#전 장', '#해 상', '#GENERAL', '#HULL', '#MACHINERY', '#ELECTRIC', '#ACCOMMODATION', '#OUTFITTING'],
       search_issue: '',
       loading: true,
       load_error: null,
@@ -212,7 +223,7 @@ export default {
 
         btn_text = btn_text.replace('#', '').replace(/\s+/g, '')
 
-        if (btn_text == 'ETC..') {
+        if (btn_text == '전체') {
           this.retrieveLessonLearned()
         } else {
           await LessonlearnedService.selectELK(btn_text)

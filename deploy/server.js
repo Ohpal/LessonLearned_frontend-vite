@@ -155,9 +155,9 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
 }
 
 app.use(
-  createProxyMiddleware('/api', {
-    target: `http://192.168.90.100:4600/api`,
-    pathRewrite: { '^/api': '' },
+  createProxyMiddleware('/rims-api', {
+    target: `http://rims.iptime.org:4550/rims-api`,
+    pathRewrite: { '^/rims-api': '' },
     changeOrigin: true,
     logLevel: 'debug',
     onError: (err, req, res) => {

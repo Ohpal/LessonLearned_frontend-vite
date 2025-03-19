@@ -57,3 +57,11 @@ Begas Port : 4700
 KDT Port : 4800
 MRC Port : 4900
 ```
+
+## REFERENCE
+
+```
+https://www.jaenung.net/tree/550
+https://jaehan.blog/posts/frontend/%EC%8C%A9-npm%EC%9C%BC%EB%A1%9C-MFE-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-(1)-:-%EA%B0%9C%EB%85%90
+https://blog.gangnamunni.com/post/saas-microfrontends/
+```

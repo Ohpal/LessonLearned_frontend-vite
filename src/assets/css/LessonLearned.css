@@ -47,7 +47,7 @@
 }
 
 .keyword > button {
-  padding: 0.5rem 0.7rem;
+  padding: 0.4rem 0.6rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -76,4 +76,16 @@ ul {
 
 .big-small {
   font-size: 0.7em;
+}
+
+.content-box-rims {
+  padding: 24px 32px 32px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.sub-title-rims {
+  font-size: 1.1rem;
+  /* line- */
 }

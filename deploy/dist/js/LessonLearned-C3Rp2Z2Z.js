@@ -2378,40 +2378,28 @@ const http = axios.create({
 });
 class LessonLearnedService {
   selectAll() {
-    return http.get("/api/lessonlearned");
+    return http.get("/rims-api/lessonlearned");
   }
   create(data) {
-    return http.post("/api/lessonlearned", data);
+    return http.post("/rims-api/lessonlearned", data);
   }
   update(data) {
-    return http.put(`/api/lessonlearned/update`, data);
+    return http.put(`/rims-api/lessonlearned/update`, data);
   }
-  //   delete(id) {
-  //     return http.delete(`/tutorials/${id}`)
-  //   }
-  //   deleteAll() {
-  //     return http.delete(`/tutorials`)
-  //   }
-  // selectIssue(issue) {
-  //   return http.get(`/api/lessonlearned?issue=${issue}`)
-  // }
-  // selectIssue(issue) {
-  //   return http.get(`/api/lessonlearned/search`, { params: { query: issue } })
-  // }
   selectELK(issue) {
-    return http.get(`/api/lessonlearned/search`, { params: { query: issue } });
+    return http.get(`/rims-api/lessonlearned/search`, { params: { query: issue } });
   }
   selectFile() {
-    return http.get("/api/lessonlearned/file");
+    return http.get("/rims-api/lessonlearned/file");
   }
   updateFavorite(id, check) {
-    return http.post(`/api/lessonlearned/${id}`, check);
+    return http.post(`/rims-api/lessonlearned/${id}`, check);
   }
   incrementViews(id) {
-    return http.post(`/api/lessonlearned/${id}/views`);
+    return http.post(`/rims-api/lessonlearned/${id}/views`);
   }
   uploadFile(formdata, id) {
-    return http.post(`/api/lessonlearned/upload`, formdata, {
+    return http.post(`/rims-api/lessonlearned/upload`, formdata, {
       headers: {
         "Content-Type": "multipart/form-data"
       },
@@ -2419,7 +2407,7 @@ class LessonLearnedService {
     });
   }
   downloadFile(id, file) {
-    return http.get(`/api/lessonlearned/download?file=${encodeURIComponent(file)}&id=${id}`, {
+    return http.get(`/rims-api/lessonlearned/download?file=${encodeURIComponent(file)}&id=${id}`, {
       responseType: "blob"
       // 바이너리 데이터는 Blob 형식으로 받아야함.
     });
@@ -8973,7 +8961,7 @@ const _hoisted_22$2 = {
 const _hoisted_23$2 = { class: "row" };
 const _hoisted_24$2 = { class: "col-md" };
 const _hoisted_25$2 = { class: "row" };
-const _hoisted_26$1 = { class: "col-md" };
+const _hoisted_26$2 = { class: "col-md" };
 const _hoisted_27$1 = { class: "row" };
 const _hoisted_28$1 = { class: "col-md" };
 const _hoisted_29$1 = { class: "modal-footer" };
@@ -8989,12 +8977,6 @@ const _hoisted_32$1 = { class: "d-flex" };
 const _hoisted_33$1 = { class: "toast-body" };
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   return _openBlock$2(), _createElementBlock$2(_Fragment$2, null, [
-    _cache[24] || (_cache[24] = _createElementVNode$2("button", {
-      type: "button",
-      class: "btn btn-primary d-flex gap-2 mb-3",
-      "data-bs-toggle": "modal",
-      "data-bs-target": "#lesson-write"
-    }, "지식공유+", -1)),
     _createElementVNode$2("div", _hoisted_1$2, [
       _createElementVNode$2("div", _hoisted_2$2, [
         _createElementVNode$2("div", _hoisted_3$2, [
@@ -9087,7 +9069,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
                     "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => $data.lessonlearned.project_part = $event),
                     required: ""
                   }, _cache[17] || (_cache[17] = [
-                    _createStaticVNode$1('<option value="" disabled selected data-v-b70bc48a>관련 시운전파트</option><option value="general" data-v-b70bc48a>General Part</option><option value="hull" data-v-b70bc48a>HULL Part</option><option value="machinery" data-v-b70bc48a>Machinery Part</option><option value="electric" data-v-b70bc48a>Electric Part</option><option value="accommodation" data-v-b70bc48a>Accomodation Part</option><option value="outfitting" data-v-b70bc48a>Outfitting Part</option>', 7)
+                    _createStaticVNode$1('<option value="" disabled selected data-v-223c927c>관련 시운전파트</option><option value="general" data-v-223c927c>General Part</option><option value="hull" data-v-223c927c>HULL Part</option><option value="machinery" data-v-223c927c>Machinery Part</option><option value="electric" data-v-223c927c>Electric Part</option><option value="accommodation" data-v-223c927c>Accomodation Part</option><option value="outfitting" data-v-223c927c>Outfitting Part</option>', 7)
                   ]), 2), [
                     [_vModelSelect$1, $data.lessonlearned.project_part]
                   ])
@@ -9125,7 +9107,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
               ])
             ]),
             _createElementVNode$2("div", _hoisted_25$2, [
-              _createElementVNode$2("div", _hoisted_26$1, [
+              _createElementVNode$2("div", _hoisted_26$2, [
                 _cache[21] || (_cache[21] = _createElementVNode$2("label", { for: "ActionResultInput" }, "조치결과", -1)),
                 _withDirectives$2(_createElementVNode$2("textarea", {
                   class: "ll_value form-control",
@@ -9190,7 +9172,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 64);
 }
-const WriteLessonlearned = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-b70bc48a"]]);
+const WriteLessonlearned = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-223c927c"]]);
 const _sfc_main$1 = {
   name: "ShowLessonlearned",
   props: {
@@ -9350,7 +9332,7 @@ const _hoisted_22$1 = ["readonly"];
 const _hoisted_23$1 = { class: "row" };
 const _hoisted_24$1 = { class: "col-md" };
 const _hoisted_25$1 = ["readonly"];
-const _hoisted_26 = { class: "row" };
+const _hoisted_26$1 = { class: "row" };
 const _hoisted_27 = { class: "col-md" };
 const _hoisted_28 = ["readonly"];
 const _hoisted_29 = { class: "row" };
@@ -9482,7 +9464,7 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
                 ])
               ])
             ]),
-            _createElementVNode$1("div", _hoisted_26, [
+            _createElementVNode$1("div", _hoisted_26$1, [
               _createElementVNode$1("div", _hoisted_27, [
                 _cache[21] || (_cache[21] = _createElementVNode$1("label", { for: "ActionResultInput" }, "조치결과", -1)),
                 _withDirectives$1(_createElementVNode$1("textarea", {
@@ -9590,7 +9572,7 @@ const _sfc_main = {
       currentIndex: -1,
       setDatas: [],
       setFiles: [],
-      keywords: ["#안 벽", "#기 관", "#선 장", "#전 장", "#해 상", "#GENERAL", "#HULL", "#MACHINERY", "#ELECTRIC", "#ACCOMMODATION", "#OUTFITTING", "ETC.."],
+      keywords: ["#전 체", "#안 벽", "#기 관", "#선 장", "#전 장", "#해 상", "#GENERAL", "#HULL", "#MACHINERY", "#ELECTRIC", "#ACCOMMODATION", "#OUTFITTING"],
       search_issue: "",
       loading: true,
       load_error: null,
@@ -9676,7 +9658,7 @@ const _sfc_main = {
         this.select_empty = false;
         let btn_text = event.target.textContent;
         btn_text = btn_text.replace("#", "").replace(/\s+/g, "");
-        if (btn_text == "ETC..") {
+        if (btn_text == "전체") {
           this.retrieveLessonLearned();
         } else {
           await LessonlearnedService.selectELK(btn_text).then((response) => {
@@ -9733,219 +9715,235 @@ const _sfc_main = {
 const { createElementVNode: _createElementVNode, resolveComponent: _resolveComponent, createVNode: _createVNode, vModelText: _vModelText, withDirectives: _withDirectives, openBlock: _openBlock, createElementBlock: _createElementBlock, withModifiers: _withModifiers, renderList: _renderList, Fragment: _Fragment, toDisplayString: _toDisplayString, createCommentVNode: _createCommentVNode } = await importShared("vue");
 const _hoisted_1 = { class: "container-fluid px-5" };
 const _hoisted_2 = { class: "mt-4 d-flex" };
-const _hoisted_3 = { class: "container-fluid px-4" };
-const _hoisted_4 = { class: "row gx-5" };
-const _hoisted_5 = { class: "col-md-4 p-3 border bg-light" };
-const _hoisted_6 = {
+const _hoisted_3 = { class: "container-fluid content-box-rims" };
+const _hoisted_4 = { class: "container-fluid" };
+const _hoisted_5 = { class: "row gx-5" };
+const _hoisted_6 = { class: "col-md-4 p-3 border bg-light rounded-left-10" };
+const _hoisted_7 = {
   class: "bd-subnavbar",
   style: { "height": "230px" }
 };
-const _hoisted_7 = { class: "input-group shadow-sm" };
-const _hoisted_8 = { class: "bd-subnavbar" };
-const _hoisted_9 = { class: "row gap-3 mb-3 p-3 bg-white border rounded keyword mx-auto shadow-sm" };
-const _hoisted_10 = { class: "col-md-8 p-3 border bg-light" };
-const _hoisted_11 = { class: "row row-padding" };
-const _hoisted_12 = { class: "col-1 dropdown" };
-const _hoisted_13 = {
+const _hoisted_8 = { class: "input-group shadow-sm" };
+const _hoisted_9 = { class: "bd-subnavbar" };
+const _hoisted_10 = { class: "row gap-3 mb-3 p-3 bg-white border rounded keyword mx-auto shadow-sm" };
+const _hoisted_11 = { class: "col-md-8 p-3 border bg-light" };
+const _hoisted_12 = { class: "row row-padding" };
+const _hoisted_13 = { class: "col-1 dropdown" };
+const _hoisted_14 = {
   class: "btn dropdown-toggle fs-6",
   type: "button",
   "data-bs-toggle": "dropdown",
   "aria-expanded": "false"
 };
-const _hoisted_14 = { class: "dropdown-menu fs-6" };
-const _hoisted_15 = {
+const _hoisted_15 = { class: "dropdown-menu fs-6" };
+const _hoisted_16 = {
   key: 0,
   class: "d-flex justify-content-center load_middle"
 };
-const _hoisted_16 = {
+const _hoisted_17 = {
   key: 1,
   class: "d-flex justify-content-center load_middle"
 };
-const _hoisted_17 = {
+const _hoisted_18 = {
   key: 2,
   class: "list-group"
 };
-const _hoisted_18 = { class: "col-md align-self-center text-center" };
-const _hoisted_19 = ["onClick"];
-const _hoisted_20 = { class: "mb-1 text-primary fw-bold h5 long-text" };
-const _hoisted_21 = { class: "mb-1 long-text" };
-const _hoisted_22 = { class: "col-md-2 align-self-center text-left long-text" };
-const _hoisted_23 = { class: "col-md-2 align-self-center text-left" };
-const _hoisted_24 = { class: "col-md-2" };
-const _hoisted_25 = { class: "col-md-2 big-small" };
+const _hoisted_19 = { class: "col-md align-self-center text-center" };
+const _hoisted_20 = ["onClick"];
+const _hoisted_21 = { class: "mb-1 text-primary fw-bold h5 long-text" };
+const _hoisted_22 = { class: "mb-1 long-text" };
+const _hoisted_23 = { class: "col-md-2 align-self-center text-left long-text" };
+const _hoisted_24 = { class: "col-md-2 align-self-center text-left" };
+const _hoisted_25 = { class: "col-md-2" };
+const _hoisted_26 = { class: "col-md-2 big-small" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_WriteLessonlearned = _resolveComponent("WriteLessonlearned");
   const _component_ShowLessonlearned = _resolveComponent("ShowLessonlearned");
   return _openBlock(), _createElementBlock("div", _hoisted_1, [
     _createElementVNode("div", _hoisted_2, [
-      _cache[9] || (_cache[9] = _createElementVNode("h4", { class: "d-flex gap-2 mb-3 h4-header" }, "Lesson Learned UAngel Test", -1)),
+      _cache[9] || (_cache[9] = _createElementVNode("h4", { class: "d-flex gap-2 mb-3 h4-header title-wrapper" }, "Lesson Learend > Search", -1)),
       _createVNode(_component_WriteLessonlearned)
     ]),
     _createElementVNode("div", _hoisted_3, [
+      _cache[19] || (_cache[19] = _createElementVNode("div", { class: "d-flex align-items-center mb-3" }, [
+        _createElementVNode("div", { class: "d-flex fs-5" }, "시운전 지식 공유"),
+        _createElementVNode("div", { class: "d-flex ms-3" }, [
+          _createElementVNode("button", {
+            type: "button",
+            class: "btn btn-primary gap-2 justify-content-end",
+            "data-bs-toggle": "modal",
+            "data-bs-target": "#lesson-write"
+          }, "지식공유+")
+        ])
+      ], -1)),
       _createElementVNode("div", _hoisted_4, [
         _createElementVNode("div", _hoisted_5, [
           _createElementVNode("div", _hoisted_6, [
-            _cache[11] || (_cache[11] = _createElementVNode("div", { class: "fs-5 fw-bold text-primary" }, "시운전 Lesson Learend 검색", -1)),
-            _createElementVNode("form", {
-              class: "bd-search position-relative me-auto mt-3",
-              onSubmit: _cache[2] || (_cache[2] = _withModifiers((...args) => $options.handleSubmit && $options.handleSubmit(...args), ["prevent"]))
-            }, [
-              _createElementVNode("div", _hoisted_7, [
-                _withDirectives(_createElementVNode("input", {
-                  class: "form-control",
-                  type: "text",
-                  placeholder: "시운전 검색어를 입력하세요.",
-                  "aria-label": "시운전 검색어를 입력하세요.",
-                  "aria-describedby": "btnNavbarSearch",
-                  spellcheck: "false",
-                  "aria-expanded": "false",
-                  "aria-autocomplete": "list",
-                  "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.search_issue = $event),
-                  aria: ""
-                }, null, 512), [
-                  [_vModelText, $data.search_issue]
-                ]),
-                _createElementVNode("button", {
-                  class: "btn btn-primary",
-                  id: "btnNavbarSearch",
-                  type: "button",
-                  onClick: _cache[1] || (_cache[1] = (...args) => $options.searchLessonlearned && $options.searchLessonlearned(...args))
-                }, _cache[10] || (_cache[10] = [
-                  _createElementVNode("svg", {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    width: "20",
-                    height: "20",
-                    fill: "currentColor",
-                    class: "bi bi-search",
-                    viewBox: "0 0 16 16"
-                  }, [
-                    _createElementVNode("path", { d: "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" })
-                  ], -1)
-                ]))
-              ])
-            ], 32)
-          ]),
-          _createElementVNode("div", _hoisted_8, [
-            _cache[12] || (_cache[12] = _createElementVNode("div", { class: "fs-5 fw-bold text-primary" }, "시운전 Lesson Learend 키워드", -1)),
-            _createElementVNode("div", _hoisted_9, [
-              (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($data.keywords, (keyword) => {
-                return _openBlock(), _createElementBlock("button", {
-                  type: "button",
-                  class: "btn btn-primary col-md-auto",
-                  key: keyword,
-                  onClick: _cache[3] || (_cache[3] = (...args) => $options.keyword_select && $options.keyword_select(...args)),
-                  "data-value": "{{ keyword }}"
-                }, _toDisplayString(keyword), 1);
-              }), 128))
-            ])
-          ])
-        ]),
-        _createElementVNode("div", _hoisted_10, [
-          _createElementVNode("div", _hoisted_11, [
-            _cache[13] || (_cache[13] = _createElementVNode("div", { class: "col-11 fs-5 fw-bold text-primary" }, "Lessson Learned 리스트", -1)),
-            _createElementVNode("div", _hoisted_12, [
-              _createElementVNode("button", _hoisted_13, _toDisplayString($data.sortOption), 1),
-              _createElementVNode("ul", _hoisted_14, [
-                _createElementVNode("li", null, [
-                  _createElementVNode("a", {
-                    class: "dropdown-item",
-                    onClick: _cache[4] || (_cache[4] = ($event) => $options.updateSortOption("최신순"))
-                  }, "최신순")
-                ]),
-                _createElementVNode("li", null, [
-                  _createElementVNode("a", {
-                    class: "dropdown-item",
-                    onClick: _cache[5] || (_cache[5] = ($event) => $options.updateSortOption("등록순"))
-                  }, "등록순")
-                ]),
-                _createElementVNode("li", null, [
-                  _createElementVNode("a", {
-                    class: "dropdown-item",
-                    onClick: _cache[6] || (_cache[6] = ($event) => $options.updateSortOption("조회순"))
-                  }, "조회순")
-                ])
-              ])
-            ])
-          ]),
-          $data.loading ? (_openBlock(), _createElementBlock("div", _hoisted_15, _cache[14] || (_cache[14] = [
-            _createElementVNode("div", {
-              class: "spinner-border text-primary m-5",
-              role: "status"
-            }, [
-              _createElementVNode("span", { class: "sr-only" })
-            ], -1)
-          ]))) : $data.select_empty ? (_openBlock(), _createElementBlock("div", _hoisted_16, _cache[15] || (_cache[15] = [
-            _createElementVNode("img", {
-              src: _imports_0,
-              alt: "No data found"
-            }, null, -1)
-          ]))) : (_openBlock(), _createElementBlock("div", _hoisted_17, [
-            (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($options.sortedLessonlearnedList, (item, index) => {
-              return _openBlock(), _createElementBlock("div", {
-                class: "list-group-item list-group-item-action d-flex flex-row shadow-sm",
-                key: index
+            _createElementVNode("div", _hoisted_7, [
+              _cache[11] || (_cache[11] = _createElementVNode("div", { class: "fs-6 fw-bold text-primary d-flex" }, [
+                _createElementVNode("div", { class: "d-flex" }, "시운전 Lesson Learned")
+              ], -1)),
+              _createElementVNode("form", {
+                class: "bd-search position-relative me-auto mt-3",
+                onSubmit: _cache[2] || (_cache[2] = _withModifiers((...args) => $options.handleSubmit && $options.handleSubmit(...args), ["prevent"]))
               }, [
-                _createElementVNode("div", _hoisted_18, [
-                  item.show_bool === false ? (_openBlock(), _createElementBlock("button", {
-                    key: 0,
-                    class: "btn favorite-btn",
-                    onClick: _cache[7] || (_cache[7] = ($event) => $options.favorite_check(true))
-                  }, _cache[16] || (_cache[16] = [
+                _createElementVNode("div", _hoisted_8, [
+                  _withDirectives(_createElementVNode("input", {
+                    class: "form-control",
+                    type: "text",
+                    placeholder: "시운전 검색어를 입력하세요.",
+                    "aria-label": "시운전 검색어를 입력하세요.",
+                    "aria-describedby": "btnNavbarSearch",
+                    spellcheck: "false",
+                    "aria-expanded": "false",
+                    "aria-autocomplete": "list",
+                    "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.search_issue = $event),
+                    aria: ""
+                  }, null, 512), [
+                    [_vModelText, $data.search_issue]
+                  ]),
+                  _createElementVNode("button", {
+                    class: "btn btn-primary",
+                    id: "btnNavbarSearch",
+                    type: "button",
+                    onClick: _cache[1] || (_cache[1] = (...args) => $options.searchLessonlearned && $options.searchLessonlearned(...args))
+                  }, _cache[10] || (_cache[10] = [
                     _createElementVNode("svg", {
                       xmlns: "http://www.w3.org/2000/svg",
-                      width: "25",
-                      height: "25",
+                      width: "20",
+                      height: "20",
                       fill: "currentColor",
-                      class: "bi bi-star",
+                      class: "bi bi-search",
                       viewBox: "0 0 16 16"
                     }, [
-                      _createElementVNode("path", { d: "M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" })
+                      _createElementVNode("path", { d: "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" })
                     ], -1)
-                  ]))) : (_openBlock(), _createElementBlock("button", {
-                    key: 1,
-                    class: "btn favorite-btn favorite-color",
-                    onClick: _cache[8] || (_cache[8] = ($event) => $options.favorite_check(false))
-                  }, _cache[17] || (_cache[17] = [
-                    _createElementVNode("svg", {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      width: "25",
-                      height: "25",
-                      fill: "currentColor",
-                      class: "bi bi-star-fill",
-                      viewBox: "0 0 16 16"
-                    }, [
-                      _createElementVNode("path", { d: "M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" })
-                    ], -1)
-                  ])))
-                ]),
-                _createElementVNode("div", {
-                  class: "col-md-7 align-self-center",
-                  "data-bs-toggle": "modal",
-                  "data-bs-target": "#list_modal",
-                  onClick: ($event) => $options.increaseProjectViews(index)
-                }, [
-                  _createElementVNode("div", _hoisted_20, _toDisplayString(item.project_title), 1),
-                  _createElementVNode("div", _hoisted_21, _toDisplayString(item.project_issue), 1)
-                ], 8, _hoisted_19),
-                _createElementVNode("small", _hoisted_22, _toDisplayString(item.project_commander) + " | " + _toDisplayString(item.project_part), 1),
-                _createElementVNode("div", _hoisted_23, [
-                  _createElementVNode("small", _hoisted_24, "작성일 " + _toDisplayString(item.project_date.split("T")[0]), 1),
-                  _cache[18] || (_cache[18] = _createElementVNode("br", null, null, -1)),
-                  _createElementVNode("small", _hoisted_25, "조회수 " + _toDisplayString(item.project_views), 1)
+                  ]))
                 ])
-              ]);
-            }), 128))
-          ])),
-          _createVNode(_component_ShowLessonlearned, {
-            setData: $data.setDatas,
-            setFile: $data.setFiles
-          }, null, 8, ["setData", "setFile"])
+              ], 32)
+            ]),
+            _createElementVNode("div", _hoisted_9, [
+              _cache[12] || (_cache[12] = _createElementVNode("div", { class: "fs-6 fw-bold text-primary" }, "시운전 Lesson Learend 키워드", -1)),
+              _createElementVNode("div", _hoisted_10, [
+                (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($data.keywords, (keyword) => {
+                  return _openBlock(), _createElementBlock("button", {
+                    type: "button",
+                    class: "btn btn-primary col-md-auto",
+                    key: keyword,
+                    onClick: _cache[3] || (_cache[3] = (...args) => $options.keyword_select && $options.keyword_select(...args)),
+                    "data-value": "{{ keyword }}"
+                  }, _toDisplayString(keyword), 1);
+                }), 128))
+              ])
+            ])
+          ]),
+          _createElementVNode("div", _hoisted_11, [
+            _createElementVNode("div", _hoisted_12, [
+              _cache[13] || (_cache[13] = _createElementVNode("div", { class: "col-11 fs-6 fw-bold text-primary" }, "Lessson Learned 리스트", -1)),
+              _createElementVNode("div", _hoisted_13, [
+                _createElementVNode("button", _hoisted_14, _toDisplayString($data.sortOption), 1),
+                _createElementVNode("ul", _hoisted_15, [
+                  _createElementVNode("li", null, [
+                    _createElementVNode("a", {
+                      class: "dropdown-item",
+                      onClick: _cache[4] || (_cache[4] = ($event) => $options.updateSortOption("최신순"))
+                    }, "최신순")
+                  ]),
+                  _createElementVNode("li", null, [
+                    _createElementVNode("a", {
+                      class: "dropdown-item",
+                      onClick: _cache[5] || (_cache[5] = ($event) => $options.updateSortOption("등록순"))
+                    }, "등록순")
+                  ]),
+                  _createElementVNode("li", null, [
+                    _createElementVNode("a", {
+                      class: "dropdown-item",
+                      onClick: _cache[6] || (_cache[6] = ($event) => $options.updateSortOption("조회순"))
+                    }, "조회순")
+                  ])
+                ])
+              ])
+            ]),
+            $data.loading ? (_openBlock(), _createElementBlock("div", _hoisted_16, _cache[14] || (_cache[14] = [
+              _createElementVNode("div", {
+                class: "spinner-border text-primary m-5",
+                role: "status"
+              }, [
+                _createElementVNode("span", { class: "sr-only" })
+              ], -1)
+            ]))) : $data.select_empty ? (_openBlock(), _createElementBlock("div", _hoisted_17, _cache[15] || (_cache[15] = [
+              _createElementVNode("img", {
+                src: _imports_0,
+                alt: "No data found"
+              }, null, -1)
+            ]))) : (_openBlock(), _createElementBlock("div", _hoisted_18, [
+              (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($options.sortedLessonlearnedList, (item, index) => {
+                return _openBlock(), _createElementBlock("div", {
+                  class: "list-group-item list-group-item-action d-flex flex-row shadow-sm",
+                  key: index
+                }, [
+                  _createElementVNode("div", _hoisted_19, [
+                    item.show_bool === false ? (_openBlock(), _createElementBlock("button", {
+                      key: 0,
+                      class: "btn favorite-btn",
+                      onClick: _cache[7] || (_cache[7] = ($event) => $options.favorite_check(true))
+                    }, _cache[16] || (_cache[16] = [
+                      _createElementVNode("svg", {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "25",
+                        height: "25",
+                        fill: "currentColor",
+                        class: "bi bi-star",
+                        viewBox: "0 0 16 16"
+                      }, [
+                        _createElementVNode("path", { d: "M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" })
+                      ], -1)
+                    ]))) : (_openBlock(), _createElementBlock("button", {
+                      key: 1,
+                      class: "btn favorite-btn favorite-color",
+                      onClick: _cache[8] || (_cache[8] = ($event) => $options.favorite_check(false))
+                    }, _cache[17] || (_cache[17] = [
+                      _createElementVNode("svg", {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "25",
+                        height: "25",
+                        fill: "currentColor",
+                        class: "bi bi-star-fill",
+                        viewBox: "0 0 16 16"
+                      }, [
+                        _createElementVNode("path", { d: "M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" })
+                      ], -1)
+                    ])))
+                  ]),
+                  _createElementVNode("div", {
+                    class: "col-md-7 align-self-center",
+                    "data-bs-toggle": "modal",
+                    "data-bs-target": "#list_modal",
+                    onClick: ($event) => $options.increaseProjectViews(index)
+                  }, [
+                    _createElementVNode("div", _hoisted_21, _toDisplayString(item.project_title), 1),
+                    _createElementVNode("div", _hoisted_22, _toDisplayString(item.project_issue), 1)
+                  ], 8, _hoisted_20),
+                  _createElementVNode("small", _hoisted_23, _toDisplayString(item.project_commander) + " | " + _toDisplayString(item.project_part), 1),
+                  _createElementVNode("div", _hoisted_24, [
+                    _createElementVNode("small", _hoisted_25, "작성일 " + _toDisplayString(item.project_date), 1),
+                    _cache[18] || (_cache[18] = _createElementVNode("br", null, null, -1)),
+                    _createElementVNode("small", _hoisted_26, "조회수 " + _toDisplayString(item.project_views), 1)
+                  ])
+                ]);
+              }), 128))
+            ])),
+            _createVNode(_component_ShowLessonlearned, {
+              setData: $data.setDatas,
+              setFile: $data.setFiles
+            }, null, 8, ["setData", "setFile"])
+          ])
         ])
       ])
     ])
   ]);
 }
-const LessonLearned = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-5e998586"]]);
+const LessonLearned = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-473b289d"]]);
 export {
   LessonLearned as default
 };
