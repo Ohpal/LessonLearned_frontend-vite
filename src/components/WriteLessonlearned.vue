@@ -1,263 +1,252 @@
 <template>
-  <!-- 지식공유 Modal -->
-  <div class="modal fade" id="lesson-write" ref="staticModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">시운전 지식 공유하기</h1>
-          <button @click="newLessonlearned" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <div class="row">
-              <div class="col">
-                <label for="ProjectNameInput">프로젝트명</label>
-                <small class="text-danger" v-if="errors.error_title">{{ ' ※프로젝트 명을 입력하세요.' }}</small>
-                <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_title ? 'red-round' : ''" id="ProjectNameInput" name="projectname" v-model="lessonlearned.project_title" placeholder="프로젝트 명" required />
-              </div>
-              <div class="col">
-                <label for="DateInput">작성날짜</label>
-                <small class="text-danger" v-if="errors.error_date">{{ ' ※날짜를 선택하세요.' }}</small>
-                <input type="date" class="ll_value form-control" :class="errors.error_date ? 'red-round' : ''" id="DateInput" name="projectdate" :max="today" v-model="lessonlearned.project_date" required />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <label for="DepartmentInput">부서</label>
-                <small class="text-danger" v-if="errors.error_department">{{ ' ※관련 부서를 입력하세요.' }}</small>
-                <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_department ? 'red-round' : ''" id="DepartmentInput" name="department" v-model="lessonlearned.project_department" placeholder="관련 부서명" required />
-              </div>
-              <div class="col">
-                <label for="CommanderInput">작성자</label>
-                <small class="text-danger" v-if="errors.error_commander">{{ ' ※성함을 입력하세요.' }}</small>
-                <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_commander ? 'red-round' : ''" id="CommanderInput" name="commander" v-model="lessonlearned.project_commander" placeholder="작성자 성함" required />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md">
-                <label for="PartInput">시운전파트</label>
-                <small class="text-danger" v-if="errors.error_part">{{ ' ※시운전 파트를 선택하세요.' }}</small>
-                <select class="ll_value form-select" :class="errors.error_part ? 'red-round' : ''" name="part" v-model="lessonlearned.project_part" required>
-                  <option value="" disabled selected>관련 시운전파트</option>
-                  <option value="general">General Part</option>
-                  <option value="hull">HULL Part</option>
-                  <option value="machinery">Machinery Part</option>
-                  <option value="electric">Electric Part</option>
-                  <option value="accommodation">Accomodation Part</option>
-                  <option value="outfitting">Outfitting Part</option>
-                </select>
-              </div>
-              <div class="col-md">
-                <label for="DescriptionInput">시운전항목</label>
-                <small class="text-danger" v-if="errors.error_description">{{ ' ※시운전 항목을 입력하세요.' }}</small>
-                <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_description ? 'red-round' : ''" id="DescriptionInput" placeholder="시운전 항목" name="description" v-model="lessonlearned.project_description" required />
-              </div>
-            </div>
+  <form class="p-4" @submit.prevent="onSubmit" style="max-width: 700px; margin: 0 auto">
+    <div class="row">
+      <!-- 프로젝트명 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">프로젝트명</label>
+        <small class="text-danger" v-if="errors.error_title">{{ ' ※프로젝트 명을 입력하세요.' }}</small>
+        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_title ? 'red-round' : ''" id="ProjectNameInput" name="projectName" v-model="lesson.project_title" placeholder="프로젝트 명" required />
+      </div>
+      <!-- 작성날짜 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">작성날짜</label>
+        <small class="text-danger" v-if="errors.error_date">{{ ' ※날짜를 선택하세요.' }}</small>
+        <input type="date" class="ll_value form-control" :class="errors.error_date ? 'red-round' : ''" id="DateInput" name="projectDate" :max="today" v-model="lesson.project_date" required />
+      </div>
+      <!-- 부서 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">부서</label>
+        <small class="text-danger" v-if="errors.error_department">{{ ' ※관련 부서를 입력하세요.' }}</small>
+        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_department ? 'red-round' : ''" id="DepartmentInput" name="department" v-model="lesson.project_department" placeholder="관련 부서명" required />
+      </div>
+      <!-- 작성자 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">작성자</label>
+        <small class="text-danger" v-if="errors.error_commander">{{ ' ※성함을 입력하세요.' }}</small>
+        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_commander ? 'red-round' : ''" id="CommanderInput" name="commander" v-model="lesson.project_commander" placeholder="작성자 성함" required />
+      </div>
+      <!-- 시운전파트 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">시운전파트</label>
+        <small class="text-danger" v-if="errors.error_part">{{ ' ※시운전 파트를 선택하세요.' }}</small>
+        <select class="ll_value form-select" :class="errors.error_part ? 'red-round' : ''" name="part" v-model="lesson.project_part" required>
+          <option value="">관련 시운전파트</option>
+          <option value="general">General Part</option>
+          <option value="hull">HULL Part</option>
+          <option value="machinery">Machinery Part</option>
+          <option value="electric">Electric Part</option>
+          <option value="accommodation">Accomodation Part</option>
+          <option value="outfitting">Outfitting Part</option>
+        </select>
+      </div>
+      <!-- 시운전항목 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">시운전항목</label>
+        <small class="text-danger" v-if="errors.error_description">{{ ' ※시운전 항목을 입력하세요.' }}</small>
+        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_description ? 'red-round' : ''" id="DescriptionInput" placeholder="시운전 항목" name="description" v-model="lesson.project_description" required />
+      </div>
+    </div>
+    <!-- 발생이슈 -->
+    <div class="mb-3">
+      <label class="form-label">발생이슈</label>
+      <textarea class="ll_value form-control" id="problemArea" rows="4" name="problem" v-model="lesson.project_issue"></textarea>
+    </div>
+    <!-- 조치결과 -->
+    <div class="mb-3">
+      <label class="form-label">조치결과</label>
+      <textarea class="ll_value form-control" id="actionResultArea" rows="4" name="actionResult" v-model="lesson.project_actionresult"></textarea>
+    </div>
+    <!-- 첨부파일 -->
+    <div class="mb-3">
+      <label class="form-label">첨부파일(문서, 사진, 영상 등)</label>
+      <input class="ll_value form-control" type="file" id="formFileMultiple" name="file" multiple @change="onFileUpload" />
+      <small class="text-secondary ms-2">{{ fileName }}</small>
+    </div>
+    <!-- 버튼 (오른쪽 정렬) -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <!-- <button type="button" class="btn btn-secondary" @click="onCancel">취소하기</button>
+      <button type="submit" class="btn btn-primary">저장하기</button> -->
+
+      <button @click="resetLesson" type="button" class="btn btn-secondary">취소하기</button>
+      <button @click.prevent="saveLesson" type="button" class="btn btn-primary">저장하기</button>
+    </div>
+
+    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+      <div v-if="show" class="toast show custom-toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-icon align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
           </div>
-          <div class="row">
-            <div class="col-md">
-              <label for="ProblemInput">발생이슈</label>
-              <textarea class="ll_value form-control" id="problemArea" rows="4" name="problem" v-model="lessonlearned.project_issue"></textarea>
-            </div>
+          <div class="toast-body">
+            {{ message }}
           </div>
-          <div class="row">
-            <div class="col-md">
-              <label for="ActionResultInput">조치결과</label>
-              <textarea class="ll_value form-control" id="actionresultArea" rows="4" name="actionresult" v-model="lessonlearned.project_actionresult"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md">
-              <label for="FileInput">첨부파일(문서, 사진, 영상 등)</label>
-              <input class="ll_value form-control" type="file" id="formFileMultiple" name="file" multiple @change="onFileUpload" />
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button @click="newLessonlearned" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
-          <button @click="saveLessonlearned" type="button" id="myModal" class="btn btn-primary">저장하기</button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
-    <div v-if="show" class="toast show custom-toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-icon align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-          </svg>
-        </div>
-        <div class="toast-body">
-          {{ message.deafult }}
-        </div>
-      </div>
-    </div>
-  </div>
+  </form>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import LessonlearnedService from '../services/LessonlearnedService'
-// import LessonLearnedVue from './LessonLearned.vue'
-import $ from 'jquery'
 
-export default {
-  name: 'add-lessonlearned',
-  data() {
-    return {
-      lessonlearned: {
-        id: null,
-        project_title: '',
-        project_date: '',
-        project_department: '',
-        project_commander: '',
-        project_part: '',
-        project_description: '',
-        project_issue: '',
-        project_actionresult: '',
-        project_files: false,
-        project_views: 0,
-        show_bool: true,
-      },
-      errors: {
-        error_title: false,
-        error_date: false,
-        error_department: false,
-        error_commander: false,
-        error_part: false,
-        error_description: false,
-      },
-      today: this.getTodayDate(),
-      show: false,
-      message: {
-        type: String,
-        deafult: '저장이 완료되었습니다!',
-      },
-      selectedFiled: [],
-      loading: true,
-      project_id: '',
+//오늘 날짜를 구하는 함수
+function getTodayDate() {
+  const d = new Date()
+  return d.toISOString().slice(0, 10)
+}
+
+const lesson = ref({
+  id: null,
+  project_title: '',
+  project_date: '',
+  project_department: '',
+  project_commander: '',
+  project_part: '',
+  project_description: '',
+  project_issue: '',
+  project_actionresult: '',
+  project_files: false,
+  project_views: 0,
+  show_bool: false,
+})
+
+const errors = ref({
+  error_title: false,
+  error_date: false,
+  error_department: false,
+  error_commander: false,
+  error_part: false,
+  error_description: false,
+})
+
+const show = ref(false)
+
+const today = getTodayDate()
+
+const fileName = ref('선택된 파일 없음')
+
+const message = ref('저장이 완료되었습니다.')
+
+const selectedFile = ref([])
+
+const loading = ref(true)
+
+function saveLesson() {
+  try {
+    loading.value = true
+    const data = {
+      project_title: lesson.value.project_title,
+      project_date: lesson.value.project_date,
+      project_department: lesson.value.project_department,
+      project_commander: lesson.value.project_commander,
+      project_part: lesson.value.project_part,
+      project_description: lesson.value.project_description,
+      project_issue: lesson.value.project_issue,
+      project_actionresult: lesson.value.project_actionresult,
+      project_files: lesson.value.project_files,
+      project_views: lesson.value.project_views,
     }
-  },
-  methods: {
-    // 글작성 및 저장 시 이벤트
-    saveLessonlearned() {
-      try {
-        this.loading = true
-        var data = {
-          project_title: this.lessonlearned.project_title,
-          project_date: this.lessonlearned.project_date,
-          project_department: this.lessonlearned.project_department,
-          project_commander: this.lessonlearned.project_commander,
-          project_part: this.lessonlearned.project_part,
-          project_description: this.lessonlearned.project_description,
-          project_issue: this.lessonlearned.project_issue,
-          project_actionresult: this.lessonlearned.project_actionresult,
-          project_files: this.lessonlearned.project_files,
-          project_views: this.lessonlearned.project_views,
-        }
 
-        if (this.selectedFiled.length >= 1) {
-          data.project_files = true
-        }
+    if (selectedFile.value.length >= 1) {
+      data.project_files = true
+    }
 
-        // 글작성 시 빈칸 및 필수 입력 확인
-        if (data.project_title == '' || data.project_date == '' || data.project_department == '' || data.project_commander == '' || data.project_part == '' || data.project_description == '') {
-          this.errors.error_title = true
-          this.errors.error_date = true
-          this.errors.error_department = true
-          this.errors.error_commander = true
-          this.errors.error_part = true
-          this.errors.error_description = true
-        } else {
-          LessonlearnedService.create(data)
-            .then((response) => {
-              this.lessonlearned.id = response.data.id
+    // 필수 입력값 체크
+    errors.value.error_title = !data.project_title
+    errors.value.error_date = !data.project_date
+    errors.value.error_department = !data.project_department
+    errors.value.error_commander = !data.project_commander
+    errors.value.error_part = !data.project_part
+    errors.value.error_description = !data.project_description
 
-              if (data.project_files) this.uploadFiles(this.lessonlearned.id)
-            })
-            .catch((e) => {
-              console.log('Why:', e)
-            })
+    // 하나라도 비면 저장 불가
+    if (errors.value.error_title || errors.value.error_date || errors.value.error_department || errors.value.error_commander || errors.value.error_part || errors.value.error_description) {
+      loading.value = false
+      return
+    }
 
-          this.showToast()
+    showToast()
 
-          setTimeout(() => {
-            $('#lesson-write').hide().removeClass('show').removeAttr('role').removeAttr('aria-modal').attr('aria-hidden', 'true')
-            $('.modal-backdrop').remove()
-            document.body.style.paddingRight = ''
-            document.body.style.overflow = ''
-            document.body.className = 'sb-nav-fixed sb-sidenav-toggled'
-            this.newLessonlearned()
-          }, 3000)
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    },
-    // 글쓰기 취소 및 저장 시 초기화 이벤트
-    newLessonlearned() {
-      this.errors.error_title = false
-      this.errors.error_date = false
-      this.errors.error_department = false
-      this.errors.error_commander = false
-      this.errors.error_part = false
-      this.errors.error_description = false
+    LessonlearnedService.create(data)
+      .then((response) => {
+        lesson.value.id = response.data.id
+        if (data.project_files) uploadFiles(lesson.value.id)
+        else loading.value = false
+        message.value = '저장이 완료되었습니다.'
+        // 여기에 저장완료 처리
 
-      this.lessonlearned.id = null
-      this.lessonlearned.project_title = ''
-      this.lessonlearned.project_date = ''
-      this.lessonlearned.project_department = ''
-      this.lessonlearned.project_commander = ''
-      this.lessonlearned.project_part = ''
-      this.lessonlearned.project_description = ''
-      this.lessonlearned.project_issue = ''
-      this.lessonlearned.project_actionresult = ''
-      this.lessonlearned.project_files = false
-      this.lessonlearned.project_views = 0
-      this.lessonlearned.show_bool = true
+        window.location.href = '/lesson' // 메인 페이지로 이동
+      })
+      .catch((e) => {
+        console.log('Why:', e)
+        loading.value = false
+      })
+  } catch (e) {
+    console.log(e)
+  }
+}
 
-      $('.ll_value').val('')
-    },
+function resetLesson() {
+  // 에러 리셋
+  Object.keys(errors.value).forEach((key) => (errors.value[key] = false))
+  // 폼 리셋
+  Object.keys(lesson.value).forEach((key) => (lesson.value[key] = key === 'project_views' ? 0 : key === 'project_files' ? false : ''))
+  lesson.value.show_bool = true
+  fileName.value = '선택된 파일 없음'
+  selectedFile.value = []
+  window.location.href = '/lesson' // 메인 페이지로 이동
+}
 
-    // 파일 업로드 관련 함수
-    onFileUpload(event) {
-      this.selectedFiled = event.target.files
-    },
+function onFileUpload(event) {
+  selectedFile.value = event.target.files
+  if (selectedFile.value.length) {
+    fileName.value = Array.from(selectedFile.value)
+      .map((file) => file.name)
+      .join(', ')
+  } else {
+    fileName.value = '선택된 파일 없음'
+  }
+}
 
-    uploadFiles(project_id) {
-      const formData = new FormData()
-      for (let i = 0; i < this.selectedFiled.length; i++) {
-        formData.append('files', this.selectedFiled[i])
-      }
+function uploadFiles(project_id) {
+  const formData = new FormData()
+  for (let i = 0; i < selectedFile.value.length; i++) {
+    formData.append('files', selectedFile.value[i])
+  }
 
-      LessonlearnedService.uploadFile(formData, project_id)
-        .then((response) => {
-          console.log('File>>', response.data)
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-        .finally(() => {
-          this.loading = false
-        })
-    },
+  LessonlearnedService.uploadFile(formData, project_id)
+    .then((response) => {
+      console.log('File>>', response.data)
+    })
+    .catch((e) => {
+      console.log(e)
+    })
+    .finally(() => {
+      loading.value = false
+    })
+}
 
-    getTodayDate() {
-      const today = new Date()
-      const yyyy = today.getFullYear()
-      const mm = String(today.getMonth() + 1).padStart(2, '0') // Months start at 0!
-      const dd = String(today.getDate()).padStart(2, '0')
-      return `${yyyy}-${mm}-${dd}`
-    },
-    showToast() {
-      this.show = true
-      setTimeout(() => {
-        this.show = false
-        this.$router.go(0)
-      }, 2500)
-    },
-  },
+// 폼 submit 이벤트에서 saveLesson 호출
+function onSubmit() {
+  saveLesson()
+}
+
+function showToast() {
+  show.value = true
+  setTimeout(() => {
+    show.value = false
+  }, 2500)
 }
 </script>
+
+<style scoped>
+/* 버튼 간격과 우측 정렬 커스텀(부트스트랩과 함께 사용) */
+.btn + .btn {
+  margin-left: 8px;
+}
+</style>
 
 <style scoped src="../assets/css/AddWrite.css"></style>

@@ -1,7 +1,7 @@
 export default {
   path: '/lesson',
   name: 'lesson',
-  redirect: {name: 'learned'},
+  redirect: { name: 'learned' },
   children: [
     {
       path: 'learned',
@@ -9,16 +9,21 @@ export default {
       component: () => import('@/components/LessonLearned.vue'),
       children: [
         {
-          path: 'search',
+          path: 'question',
           name: 'learned-details',
           component: () => import('@/components/LessonLearned.vue'),
-        }
-      ]
+        },
+      ],
+    },
+    {
+      path: 'write',
+      name: 'learned-write',
+      component: () => import('@/components/WriteLessonLearned.vue'),
     },
     {
       path: 'ready',
       name: 'ready',
       component: () => import('@/components/NowReady.vue'),
     },
-  ]
+  ],
 }

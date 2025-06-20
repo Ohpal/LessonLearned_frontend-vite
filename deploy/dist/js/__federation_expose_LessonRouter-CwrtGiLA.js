@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./../js/LessonLearned-C3Rp2Z2Z.js","./../js/__federation_fn_import-Dc6jQS63.js","./../js/_plugin-vue_export-helper-1tPrXgE0.js","./../js/NowReady-CTlt6-3T.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./../js/LessonLearned-Kvn4JmR9.js","./../js/__federation_fn_import-Dc6jQS63.js","./../js/LessonlearnedService-vXFECDjD.js","./../js/_plugin-vue_export-helper-1tPrXgE0.js","./../js/WriteLessonlearned-Bb6jR8TV.js","./../js/NowReady-CTlt6-3T.js"])))=>i.map(i=>d[i]);
 const scriptRel = "modulepreload";
 const assetsURL = function(dep, importerUrl) {
   return new URL(dep, importerUrl).href;
@@ -79,19 +79,24 @@ const lesson = {
     {
       path: "learned",
       name: "learned",
-      component: () => __vitePreload(() => import("./LessonLearned-C3Rp2Z2Z.js"), true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url),
+      component: () => __vitePreload(() => import("./LessonLearned-Kvn4JmR9.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0, import.meta.url),
       children: [
         {
-          path: "search",
+          path: "question",
           name: "learned-details",
-          component: () => __vitePreload(() => import("./LessonLearned-C3Rp2Z2Z.js"), true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url)
+          component: () => __vitePreload(() => import("./LessonLearned-Kvn4JmR9.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0, import.meta.url)
         }
       ]
     },
     {
+      path: "write",
+      name: "learned-write",
+      component: () => __vitePreload(() => import("./WriteLessonlearned-Bb6jR8TV.js"), true ? __vite__mapDeps([4,1,2,3]) : void 0, import.meta.url)
+    },
+    {
       path: "ready",
       name: "ready",
-      component: () => __vitePreload(() => import("./NowReady-CTlt6-3T.js"), true ? __vite__mapDeps([3,1,2]) : void 0, import.meta.url)
+      component: () => __vitePreload(() => import("./NowReady-CTlt6-3T.js"), true ? __vite__mapDeps([5,1,3]) : void 0, import.meta.url)
     }
   ]
 };

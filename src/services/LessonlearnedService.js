@@ -43,6 +43,11 @@ class LessonLearnedService {
       responseType: 'blob', // 바이너리 데이터는 Blob 형식으로 받아야함.
     })
   }
+
+  // LLM 검색 및 답변
+  questionLLM(question) {
+    return http.post(`/rims-api/lessonlearned/ask`, { question })
+  }
 }
 
 export default new LessonLearnedService()
