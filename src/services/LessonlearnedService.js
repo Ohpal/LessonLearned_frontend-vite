@@ -17,8 +17,8 @@ class LessonLearnedService {
     return http.get(`/rims-api/lessonlearned/search`, { params: { query: issue } })
   }
 
-  selectFile() {
-    return http.get('/rims-api/lessonlearned/file')
+  selectFile(id) {
+    return http.get(`/rims-api/lessonlearned/file/${id}`)
   }
 
   updateFavorite(id, check) {

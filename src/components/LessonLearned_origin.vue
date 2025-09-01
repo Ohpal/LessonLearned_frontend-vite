@@ -1,17 +1,12 @@
 <!-- Lesson Learend Page-->
 <template>
-  <div class="container-fluid px-5">
-    <div class="mt-4 d-flex">
-      <!-- 지식공유 Modal -->
-      <WriteLessonlearned />
-    </div>
-
+  <div class="container-fluid">
     <!--Lesson Learned 검색-->
     <div class="container-fluid content-box-rims">
       <div class="d-flex align-items-center mb-3">
-        <div class="d-flex fs-5">시운전 지식 공유</div>
+        <div class="d-flex fs-5">시운전 지식 검색</div>
         <div class="d-flex ms-3">
-          <button type="button" class="btn btn-primary gap-2 justify-content-end" data-bs-toggle="modal" data-bs-target="#lesson-write">지식공유+</button>
+          <button type="button" class="btn rims-custom-btn rounded-3 px-3 ms-2" @click="writeLesson">지식공유+</button>
         </div>
       </div>
       <div class="container-fluid">

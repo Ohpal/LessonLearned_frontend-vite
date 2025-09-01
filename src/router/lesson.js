@@ -21,9 +21,9 @@ export default {
       component: () => import('@/components/WriteLessonLearned.vue'),
     },
     {
-      path: 'ready',
-      name: 'ready',
-      component: () => import('@/components/NowReady.vue'),
+      path: 'show',
+      name: 'learned-show',
+      component: () => import('@/components/LessonLearned_origin.vue'),
     },
   ],
 }

@@ -147,16 +147,11 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
       },
     })
   )
-  // app.get(process.env.VITE_CLIENT_PATH + '/actuator/prometheus', (req, res) => {
-  //   res.set('Content-Type', register.contentType);
-  //   res.end(register.metrics());
-  // });
-  // app.use(process.env.VITE_CLIENT_PATH, express.static(distDir))
 }
 
 app.use(
   createProxyMiddleware('/rims-api', {
-    target: `http://rims.iptime.org:4550/rims-api`,
+    target: `http://localhost:4550/rims-api`,
     pathRewrite: { '^/rims-api': '' },
     changeOrigin: true,
     logLevel: 'debug',
@@ -186,11 +181,11 @@ app.use(
   createProxyMiddleware('/krakend', {
     target: `${process.env.VITE_API_TARGET}`,
     pathRewrite: { '^/krakend': '' },
-    changeOrigin: true,
+    changeOrigin:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                true,
     logLevel: 'debug',
     onError: (err, req, res) => {
       logger.error(JSON.stringify(err))
-    },
+    },     
     onProxyReq: function (proxyReq, req, rsp) {
       const logString = `||REQ|HTTP|${req.method}|${proxyReq.host}|||||${req.headers['x-apiversion']}|${req.url}|`
 
@@ -251,12 +246,3 @@ const port = process.env.VITE_PORT_HTTP
 app.listen(4500, () => {
   console.log(`${date.toLocaleString()} app listening at ${port}`)
 })
-
-// app.get(process.env.VITE_CLIENT_PATH + '/actuator/prometheus', async (req, res) => {
-//   try {
-//     res.set('Content-Type', register.contentType);
-//     res.end(await register.metrics());
-//   } catch (ex) {
-//     res.status(500).end(ex);
-//   }
-// });

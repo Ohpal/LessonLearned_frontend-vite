@@ -1,91 +1,95 @@
 <template>
-  <form class="p-4" @submit.prevent="onSubmit" style="max-width: 700px; margin: 0 auto">
-    <div class="row">
-      <!-- 프로젝트명 -->
-      <div class="col-md-6 mb-3">
-        <label class="form-label">프로젝트명</label>
-        <small class="text-danger" v-if="errors.error_title">{{ ' ※프로젝트 명을 입력하세요.' }}</small>
-        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_title ? 'red-round' : ''" id="ProjectNameInput" name="projectName" v-model="lesson.project_title" placeholder="프로젝트 명" required />
+  <div class="container-fluid">
+    <div class="container-fluid content-box-rims">
+      <div class="d-flex align-items-center mb-3">
+        <div class="d-flex fs-5">시운전 지식 등록</div>
       </div>
-      <!-- 작성날짜 -->
-      <div class="col-md-6 mb-3">
-        <label class="form-label">작성날짜</label>
-        <small class="text-danger" v-if="errors.error_date">{{ ' ※날짜를 선택하세요.' }}</small>
-        <input type="date" class="ll_value form-control" :class="errors.error_date ? 'red-round' : ''" id="DateInput" name="projectDate" :max="today" v-model="lesson.project_date" required />
-      </div>
-      <!-- 부서 -->
-      <div class="col-md-6 mb-3">
-        <label class="form-label">부서</label>
-        <small class="text-danger" v-if="errors.error_department">{{ ' ※관련 부서를 입력하세요.' }}</small>
-        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_department ? 'red-round' : ''" id="DepartmentInput" name="department" v-model="lesson.project_department" placeholder="관련 부서명" required />
-      </div>
-      <!-- 작성자 -->
-      <div class="col-md-6 mb-3">
-        <label class="form-label">작성자</label>
-        <small class="text-danger" v-if="errors.error_commander">{{ ' ※성함을 입력하세요.' }}</small>
-        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_commander ? 'red-round' : ''" id="CommanderInput" name="commander" v-model="lesson.project_commander" placeholder="작성자 성함" required />
-      </div>
-      <!-- 시운전파트 -->
-      <div class="col-md-6 mb-3">
-        <label class="form-label">시운전파트</label>
-        <small class="text-danger" v-if="errors.error_part">{{ ' ※시운전 파트를 선택하세요.' }}</small>
-        <select class="ll_value form-select" :class="errors.error_part ? 'red-round' : ''" name="part" v-model="lesson.project_part" required>
-          <option value="">관련 시운전파트</option>
-          <option value="general">General Part</option>
-          <option value="hull">HULL Part</option>
-          <option value="machinery">Machinery Part</option>
-          <option value="electric">Electric Part</option>
-          <option value="accommodation">Accomodation Part</option>
-          <option value="outfitting">Outfitting Part</option>
-        </select>
-      </div>
-      <!-- 시운전항목 -->
-      <div class="col-md-6 mb-3">
-        <label class="form-label">시운전항목</label>
-        <small class="text-danger" v-if="errors.error_description">{{ ' ※시운전 항목을 입력하세요.' }}</small>
-        <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_description ? 'red-round' : ''" id="DescriptionInput" placeholder="시운전 항목" name="description" v-model="lesson.project_description" required />
-      </div>
-    </div>
-    <!-- 발생이슈 -->
-    <div class="mb-3">
-      <label class="form-label">발생이슈</label>
-      <textarea class="ll_value form-control" id="problemArea" rows="4" name="problem" v-model="lesson.project_issue"></textarea>
-    </div>
-    <!-- 조치결과 -->
-    <div class="mb-3">
-      <label class="form-label">조치결과</label>
-      <textarea class="ll_value form-control" id="actionResultArea" rows="4" name="actionResult" v-model="lesson.project_actionresult"></textarea>
-    </div>
-    <!-- 첨부파일 -->
-    <div class="mb-3">
-      <label class="form-label">첨부파일(문서, 사진, 영상 등)</label>
-      <input class="ll_value form-control" type="file" id="formFileMultiple" name="file" multiple @change="onFileUpload" />
-      <small class="text-secondary ms-2">{{ fileName }}</small>
-    </div>
-    <!-- 버튼 (오른쪽 정렬) -->
-    <div class="d-flex justify-content-end gap-2 mt-4">
-      <!-- <button type="button" class="btn btn-secondary" @click="onCancel">취소하기</button>
-      <button type="submit" class="btn btn-primary">저장하기</button> -->
-
-      <button @click="resetLesson" type="button" class="btn btn-secondary">취소하기</button>
-      <button @click.prevent="saveLesson" type="button" class="btn btn-primary">저장하기</button>
-    </div>
-
-    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
-      <div v-if="show" class="toast show custom-toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          <div class="toast-icon align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-            </svg>
+      <form class="p-4" @submit.prevent="onSubmit" style="max-width: 700px; margin: 0 auto">
+        <div class="row mb-0">
+          <!-- 프로젝트명 -->
+          <div class="col-md-6 mb-2">
+            <label class="form-label">프로젝트명</label>
+            <small class="text-danger" v-if="errors.error_title">{{ ' ※프로젝트 명을 입력하세요.' }}</small>
+            <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_title ? 'red-round' : ''" id="ProjectNameInput" name="projectName" v-model="lesson.project_title" placeholder="프로젝트 명" required />
           </div>
-          <div class="toast-body">
-            {{ message }}
+          <!-- 작성날짜 -->
+          <div class="col-md-6 mb-2">
+            <label class="form-label">작성날짜</label>
+            <small class="text-danger" v-if="errors.error_date">{{ ' ※날짜를 선택하세요.' }}</small>
+            <input type="date" class="ll_value form-control" :class="errors.error_date ? 'red-round' : ''" id="DateInput" name="projectDate" :max="today" v-model="lesson.project_date" required />
+          </div>
+          <!-- 부서 -->
+          <div class="col-md-6 mb-2">
+            <label class="form-label">부서</label>
+            <small class="text-danger" v-if="errors.error_department">{{ ' ※관련 부서를 입력하세요.' }}</small>
+            <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_department ? 'red-round' : ''" id="DepartmentInput" name="department" v-model="lesson.project_department" placeholder="관련 부서명" required />
+          </div>
+          <!-- 작성자 -->
+          <div class="col-md-6 mb-2">
+            <label class="form-label">작성자</label>
+            <small class="text-danger" v-if="errors.error_commander">{{ ' ※성함을 입력하세요.' }}</small>
+            <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_commander ? 'red-round' : ''" id="CommanderInput" name="commander" v-model="lesson.project_commander" placeholder="작성자 성함" required />
+          </div>
+          <!-- 시운전파트 -->
+          <div class="col-md-6 mb-2">
+            <label class="form-label">시운전파트</label>
+            <small class="text-danger" v-if="errors.error_part">{{ ' ※시운전 파트를 선택하세요.' }}</small>
+            <select class="ll_value form-select" :class="errors.error_part ? 'red-round' : ''" name="part" v-model="lesson.project_part" required>
+              <option value="">관련 시운전파트</option>
+              <option value="general">General Part</option>
+              <option value="hull">HULL Part</option>
+              <option value="machinery">Machinery Part</option>
+              <option value="electric">Electric Part</option>
+              <option value="accommodation">Accomodation Part</option>
+              <option value="outfitting">Outfitting Part</option>
+            </select>
+          </div>
+          <!-- 시운전항목 -->
+          <div class="col-md-6 mb-2">
+            <label class="form-label">시운전항목</label>
+            <small class="text-danger" v-if="errors.error_description">{{ ' ※시운전 항목을 입력하세요.' }}</small>
+            <input type="text" autocomplete="off" class="ll_value form-control" :class="errors.error_description ? 'red-round' : ''" id="DescriptionInput" placeholder="시운전 항목" name="description" v-model="lesson.project_description" required />
           </div>
         </div>
-      </div>
+        <!-- 발생이슈 -->
+        <div class="mb-2">
+          <label class="form-label">발생이슈</label>
+          <textarea class="ll_value form-control" id="problemArea" rows="5" name="problem" v-model="lesson.project_issue"></textarea>
+        </div>
+        <!-- 조치결과 -->
+        <div class="mb-2">
+          <label class="form-label">조치결과</label>
+          <textarea class="ll_value form-control" id="actionResultArea" rows="5" name="actionResult" v-model="lesson.project_actionresult"></textarea>
+        </div>
+        <!-- 첨부파일 -->
+        <div class="mb-2">
+          <label class="form-label">첨부파일(문서, 사진, 영상 등)</label>
+          <input class="ll_value form-control" type="file" id="formFileMultiple" name="file" multiple @change="onFileUpload" />
+          <small class="text-secondary ms-2">{{ fileName }}</small>
+        </div>
+        <!-- 버튼 (오른쪽 정렬) -->
+        <div class="d-flex justify-content-end gap-2 mt-3">
+          <button @click="resetLesson" type="button" class="btn custom-secondary-btn">취소하기</button>
+          <button @click.prevent="saveLesson" type="button" class="btn rims-custom-btn">저장하기</button>
+        </div>
+
+        <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+          <div v-if="show" class="toast show custom-toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+              <div class="toast-icon align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>
+              </div>
+              <div class="toast-body">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </template>
 
 <script setup>
@@ -181,11 +185,11 @@ function saveLesson() {
         window.location.href = '/lesson' // 메인 페이지로 이동
       })
       .catch((e) => {
-        console.log('Why:', e)
         loading.value = false
+        console.error('Lesson Save Err>>', e)
       })
   } catch (e) {
-    console.log(e)
+    console.error('Save Lesson ERR>>', e)
   }
 }
 
@@ -197,7 +201,7 @@ function resetLesson() {
   lesson.value.show_bool = true
   fileName.value = '선택된 파일 없음'
   selectedFile.value = []
-  window.location.href = '/lesson' // 메인 페이지로 이동
+  window.location.href = '/lesson/learned' // 메인 페이지로 이동
 }
 
 function onFileUpload(event) {
@@ -222,7 +226,7 @@ function uploadFiles(project_id) {
       console.log('File>>', response.data)
     })
     .catch((e) => {
-      console.log(e)
+      console.error('UploadFiles ERR>>', e)
     })
     .finally(() => {
       loading.value = false
@@ -246,6 +250,55 @@ function showToast() {
 /* 버튼 간격과 우측 정렬 커스텀(부트스트랩과 함께 사용) */
 .btn + .btn {
   margin-left: 8px;
+}
+
+.content-box-rims {
+  padding: 24px 32px 32px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.shadow-box {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+    0 8px 24px rgba(60, 111, 247, 0.07),
+    0 1.5px 8px rgba(0, 0, 0, 0.08);
+  /* max-width: 900px; */
+  margin: 0 auto;
+  padding: 40px 0 60px 0;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rims-custom-btn {
+  background: #4286f5 !important;
+  color: #fff !important; /* 원하는 파란색 */
+  border: 1.5px solid #4286f5 !important;
+  font-weight: bold;
+}
+.rims-custom-btn:hover,
+.rims-custom-btn:focus {
+  background: #0b5ed7 !important;
+  color: #f3f6fb !important;
+  border-color: #f3f6fb !important;
+}
+
+.custom-secondary-btn {
+  background: #6c757d !important;
+  color: #fff !important; /* 원하는 파란색 */
+  border: 1.5px solid #6c757d !important;
+  font-weight: bold;
+}
+
+.custom-secondary-btn:hover,
+.custom-secondary-btn:focus {
+  background: #4c4c4c !important;
+  color: #f3f6fb !important;
+  border-color: #f3f6fb !important;
 }
 </style>
 

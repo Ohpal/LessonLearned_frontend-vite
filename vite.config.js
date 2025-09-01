@@ -8,7 +8,7 @@ import federation from '@originjs/vite-plugin-federation'
 // https://vitejs.dev/config/
 export default defineConfig({
   optimizeDeps: {
-    exclude: ['vuetify'],
+    exclude: ['vuetify', 'bootstrap'],
   },
   server: {
     port: 4000,
